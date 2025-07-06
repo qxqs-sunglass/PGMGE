@@ -1,0 +1,11 @@
+{
+  "title": "Test Game",
+  "width": 1400,
+  "height": 800,
+  "fps": 60,
+  "read_path": {
+    "images": "resources/images",
+    "scenes": "resources/scenes",
+    "scripts": "resources/scripts"
+  }
+}
