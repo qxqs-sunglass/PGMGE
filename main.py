@@ -1,6 +1,6 @@
 """游戏引擎主程序"""
 from G_GRL import GGRLoader
-from G_GRA import GGALoader
+from G_GRA import GGRAllocator
 from G_GRR import GGRRender
 from G_GRC import GGRControl
 import pygame
@@ -11,7 +11,7 @@ class Main:
     def __init__(self):
         pygame.init()
         self.G_GRL = GGRLoader()  # 加载游戏资源
-        self.G_GRA = GGALoader()  # 合成、分配游戏场景
+        self.G_GRA = GGRAllocator()  # 合成、分配游戏场景
         self.G_GRR = GGRRender()  # 渲染游戏图像
         self.G_GRC = GGRControl()  # 处理游戏事件
         self.data = {}

@@ -5,6 +5,7 @@ class GGRControl:
     def __init__(self, master=None):
         """游戏全局控制器(GGRC)"""
         self.master = master  # main.py的实例化对象
+        self.ID = "G_GRControl"  # 全局控制器ID
 
     def init(self):
         pass
