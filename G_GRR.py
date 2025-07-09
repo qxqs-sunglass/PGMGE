@@ -9,7 +9,7 @@ class GGRRender:
         self.sprites_data = None  # 存放所有精灵的数据
 
     def init(self):
-        self.sprites_data = self.master.sprites_data  # 精灵数据
+        pass
 
     def update(self):
         for sprite in self.sprites_data:

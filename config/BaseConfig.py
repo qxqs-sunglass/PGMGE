@@ -8,3 +8,6 @@ __G_GR_ID__ = {
     "G_GRLoader": "logs/G_GRLoader.log",
     "G_GRAllocator": "logs/G_GRAllocator.log"
 }  # 全局资源ID
+__custom_tags__ = [
+    "custom_sprite_type"
+]
