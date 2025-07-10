@@ -1,9 +1,9 @@
 """读取文件的控制模块"""
 from config.BaseConfig import __default_path__
+from logs import write_log
 import os
 import json
 import pygame
-import logs
 
 
 class GGRLoader:
@@ -37,15 +37,14 @@ class GGRLoader:
     def init(self):
         """初始化"""
         self.dfs_path(self.file_path)
-        print("文件数量：", len(self.file_content_paths))
-        print("文件类型：", len(self.file_type))
-        for key, value in self.data_games.items():
-            print(key, "数量：", len(value))
-            print(value)
-            print("-----------------------------")
+        write_log("\n-------------------------\n初始化成功！", self.ID)
+        # print("文件数量：", len(self.file_content_paths))
+        write_log("文件数量："+str(len(self.file_content_paths)), self.ID)
+        # print("文件类型：", len(self.file_type))
+        write_log("文件类型："+str(len(self.file_type)), self.ID)
 
     def load_file(self, file_path):
-        """读取文件，用于动态加载资源"""
+        """读取文件，用于动态加载资源；一般用于二次加载游戏资源"""
 
     def dfs_path(self, path):
         """深度优先遍历目录"""
@@ -72,7 +71,8 @@ class GGRLoader:
         """保存图片路径"""
         data = pygame.image.load(path)
         self.data_games["images"][os.path.basename(path)] = data
-        print("加载图片：", os.path.basename(path))
+        # print("加载图片：", os.path.basename(path))
+        write_log("加载图片："+os.path.basename(path), self.ID)
 
     def save_path_json(self, path):
         """保存场景或脚本路径"""
@@ -94,12 +94,13 @@ class GGRLoader:
                 self.data_games[gtype][name] = data
         else:
             self.data_games["unknown"][name] = data
-        print("加载.json文件：", os.path.basename(path))
+        # print("加载.json文件：", os.path.basename(path))
+        write_log("加载.json文件："+os.path.basename(path), self.ID)
 
 
 if __name__ == '__main__':
     loader = GGRLoader()
     loader.init()
-    print(loader.file_content_paths)
+    # print(loader.file_content_paths)
 
 
