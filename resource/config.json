@@ -8,5 +8,10 @@
     "scenes": "resources/scenes",
     "scripts": "resources/scripts"
   },
-  "custom_sprite_type": ["actor", "equipment", "skill"]
+  "custom_sprite_type": ["actor", "equipment", "skill"],
+  "first_load": {
+    "path": ["resources/scenes/start.json", "resources/scripts/start.json"],
+    "scene": "start",
+    "script": "start"
+  }
 }
