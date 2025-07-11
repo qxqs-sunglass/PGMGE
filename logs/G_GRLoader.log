@@ -1,17 +1,21 @@
-加载.json文件：王陵.json				0.421875
-加载.json文件：苏晓.json				0.421875
-加载.json文件：config.json				0.421875
-加载.json文件：于人之法.json				0.421875
-加载图片：actor.png				0.4375
-加载图片：共.png				0.484375
-加载图片：苏晓.png				0.546875
-加载图片：but1.png				0.546875
-加载图片：error.png				0.546875
-加载图片：user.png				0.546875
-加载.json文件：title.json				0.5625
-加载.json文件：王陵.json				0.5625
-
+error:	文件不存在：resources/scenes/start.json				0.46875
+error:	文件不存在：resources/scripts/start.json				0.46875
+common:	加载.json文件：王陵.json				0.46875
+common:	加载.json文件：苏晓.json				0.46875
+common:	加载.json文件：config.json				0.46875
+common:	加载.json文件：于人之法.json				0.484375
+common:	加载图片：actor.png				0.484375
+common:	加载图片：共.png				0.53125
+common:	加载图片：苏晓.png				0.59375
+common:	加载图片：but1.png				0.59375
+common:	加载图片：error.png				0.59375
+common:	加载图片：user.png				0.609375
+common:	加载.json文件：start.json				0.609375
+common:	加载.json文件：title.json				0.609375
+common:	加载.json文件：start.json				0.609375
+common:	加载.json文件：王陵.json				0.609375
+info:	
 -------------------------
-初始化成功！				0.5625
-文件数量：14				0.5625
-文件类型：6				0.5625
+初始化成功！				0.609375
+common:	文件数量：16				0.609375
+common:	文件类型：6				0.609375

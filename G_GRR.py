@@ -12,5 +12,7 @@ class GGRRender:
         pass
 
     def update(self):
-        for sprite in self.sprites_data:
-            sprite.draw()
+        """更新游戏渲染器"""
+        pass
+        """for sprite in self.sprites_data:
+            sprite.draw()"""

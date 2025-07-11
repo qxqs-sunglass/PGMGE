@@ -37,14 +37,20 @@ class GGRLoader:
     def init(self):
         """初始化"""
         self.dfs_path(self.file_path)
-        write_log("\n-------------------------\n初始化成功！", self.ID)
+        write_log("\n-------------------------\n初始化成功！", self.ID, msg_type="info")
         # print("文件数量：", len(self.file_content_paths))
         write_log("文件数量："+str(len(self.file_content_paths)), self.ID)
         # print("文件类型：", len(self.file_type))
         write_log("文件类型："+str(len(self.file_type)), self.ID)
 
     def load_file(self, file_path):
-        """读取文件，用于动态加载资源；一般用于二次加载游戏资源"""
+        """读取文件，用于动态加载资源，注：此处使用绝对路径"""
+        if not os.path.exists(file_path):  # 文件不存在
+            write_log("文件不存在："+file_path, self.ID, msg_type="error")
+            return
+        file_type = self.judge_file_type(file_path)  # 判断文件类型
+        if file_type in self.save_path_dict.keys():  # 类型存在于字典中
+            self.save_path_dict[file_type](file_path)  # 保存路径到字典
 
     def dfs_path(self, path):
         """深度优先遍历目录"""
@@ -52,6 +58,8 @@ class GGRLoader:
             file_path = os.path.join(path, file)  # 文件路径
             if os.path.isdir(file_path):  # 目录
                 self.dfs_path(file_path)
+                continue
+            if file_path in self.file_content_paths:  # 已存在
                 continue
             self.file_content_paths.append(file_path)  # 添加文件路径到列表
             # 保存路径到字典

@@ -1,5 +1,5 @@
 """用于处理全局日志"""
-from config.BaseConfig import __G_GR_ID__
+from config.BaseConfig import __G_GR_ID__, __msg_types__
 import os
 import time
 
@@ -16,16 +16,21 @@ def init_log():
                 f.truncate()
 
 
-def write_log(log_str, G_ID):
+def write_log(log_str, G_ID, msg_type="common"):
     """写入日志:
+    :param msg_type: common/error/warning/info/debug/none
     :param log_str: 日志内容
     :param G_ID: 所属系统模块的的日志ID"""
     if type(log_str) is not str:
         log_str = str(log_str)
+    if msg_type not in __msg_types__:
+        msg_type = "common"
+    if msg_type == "none" or msg_type == "None":
+        msg_type = ""
 
     time_str = time.thread_time()   # 获取当前运行时间
     with open(__G_GR_ID__[G_ID], 'a', encoding='utf-8') as f:
-        f.write(log_str + '\t\t\t\t' + str(time_str) + '\n')   # 写入日志内容
+        f.write(msg_type + ':\t' + log_str + '\t\t\t\t' + str(time_str) + '\n')   # 写入日志内容
         f.flush()   # 刷新缓冲区
 
 

@@ -10,6 +10,19 @@ __G_GR_ID__ = {
     "G_GRLoader": "logs/G_GRLoader.log",
     "G_GRAllocator": "logs/G_GRAllocator.log"
 }  # 全局资源ID
+__msg_types__ = [
+    "info",  # 信息
+    "Info",
+    "warning",  # 警告
+    "Warning",
+    "error",  # 错误
+    "Error",
+    "debug",  # 调试
+    "Debug",
+    "none", # 无
+    "None"
+]
 __custom_tags__ = [
-    "custom_sprite_type"  # 自定义精灵类型标签
+    "custom_sprite_type",  # 自定义精灵类型标签
+    "first_load"  # 初始导入标签:用于打开加载界面时加载其余资源
 ]  # 系统规范的自定义标签
