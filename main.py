@@ -1,5 +1,5 @@
 """游戏引擎主程序"""
-from config.BaseConfig import __custom_tags__, __FPS__
+from config.BaseConfig import __custom_tags__, __FPS__, __default_path__
 from logs import init_log, write_log
 from G_GRL import GGRLoader
 from G_GRA import GGRAllocator
@@ -25,6 +25,8 @@ class Main:
         self.clock = None  # 时钟
         self.fps = __FPS__  # 帧率
         self.running = True  # 游戏运行状态
+        self.WIDTH = self.data.get("width", 800)  # 屏幕宽度
+        self.HEIGHT = self.data.get("height", 600)  # 屏幕高度
         self.deal_tag_map = {
             "custom_sprite_type": self.deal_tag__custom_sprite_type,
             "first_load": self.deal_tag__first_load
@@ -34,12 +36,13 @@ class Main:
         # 变量数据
         self.ID = "Main"
         # 资源数据
-        self.data_images = {}
-        self.data_scenes = {}
-        self.data_scripts = {}
-        self.data_unknown = {}
-        # 精灵数据
-        self.data_sprites = {}
+        self.data_games = {
+            "images": {},
+            "sounds": {},
+            "sprites": {},
+            "scenes": {},
+            "scripts": {},
+        }
         self.init()
 
     def init(self):
@@ -52,12 +55,12 @@ class Main:
     def init_game(self):
         """初始化游戏"""
         self.screen = pygame.display.set_mode(
-            (self.data.get("width", 800), self.data.get("height", 600))
+            (self.WIDTH, self.HEIGHT)
         )  # 设置屏幕大小
         pygame.display.set_caption(self.data.get("title", "游戏标题"))  # 设置窗口标题
         self.clock = pygame.time.Clock()  # 时钟
         self.fps = self.data.get("fps", __FPS__)  # 帧率
-        self.read_path = self.data["read_path"]  # 读取路径
+        self.G_GRL.file_path = self.data.get("file_path", __default_path__)  # 资源文件路径
         self.search_deal_tag()  # 搜索并处理自定义标签
 
     def init_module(self):
@@ -78,6 +81,7 @@ class Main:
     def search_deal_tag(self):
         """搜索并处理自定义标签"""
         # 搜索自定义标签
+        # print(self.data)
         for tag in __custom_tags__:
             if tag in self.data:
                 write_log("发现自定义标签："+tag, self.ID)
@@ -95,8 +99,8 @@ class Main:
 
     def deal_tag__first_load(self, data):
         """处理首次启动标签"""
-        print(data["path"])
-        print(data["scene"])
+        # print(data["path"])
+        # print(data["scene"])
         for path in data["path"]:
             self.G_GRL.load_file(path)  # 加载资源文件
 

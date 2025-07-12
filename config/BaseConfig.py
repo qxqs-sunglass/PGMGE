@@ -19,10 +19,12 @@ __msg_types__ = [
     "Error",
     "debug",  # 调试
     "Debug",
-    "none", # 无
+    "none",  # 无
     "None"
 ]
 __custom_tags__ = [
     "custom_sprite_type",  # 自定义精灵类型标签
+    "custom_scene_type",  # 自定义场景类型标签
+    "custom_script_type",  # 自定义脚本类型标签
     "first_load"  # 初始导入标签:用于打开加载界面时加载其余资源
 ]  # 系统规范的自定义标签
