@@ -27,7 +27,7 @@ class GGRLoader:
             "json": self.save_path_json,
         }  # 映射字典
         self.file_content_paths = []    # 目录下所有文件路径
-        self.data_games = {
+        self.data_game = {
             "images": {},
             "scenes": {},
             "scripts": {},
@@ -40,7 +40,7 @@ class GGRLoader:
         write_log("\n-------------------------\n初始化成功！", self.ID, msg_type="info")
         write_log("文件数量："+str(len(self.file_content_paths)), self.ID)
         write_log("文件类型："+str(len(self.file_type)), self.ID)
-        for key, value in self.data_games.items():
+        for key, value in self.data_game.items():
             write_log(key+": "+str(len(value)), self.ID)
             write_log(str(value), self.ID)
 
@@ -96,7 +96,7 @@ class GGRLoader:
     def save_path_image(self, path):
         """保存图片路径"""
         data = pygame.image.load(path)
-        self.data_games["images"][os.path.basename(path)] = data
+        self.data_game["images"][os.path.basename(path)] = data
         # print("加载图片：", os.path.basename(path))
         write_log("加载图片："+os.path.basename(path), self.ID)
 
@@ -109,17 +109,17 @@ class GGRLoader:
             f.close()
         gtype = data.get("type")  # 获取类型
         name = os.path.basename(path)  # 获取文件名
-        if gtype == "scene":
-            self.data_games["scenes"][name] = data
-        elif gtype == "script":
-            self.data_games["scripts"][name] = data
-        elif gtype in self.file_type:
-            if gtype not in self.data_games.keys():
-                self.data_games[gtype] = {name: data}
+        if gtype == "scene":  # 场景
+            self.data_game["scenes"][name] = data
+        elif gtype == "script":  # 脚本
+            self.data_game["scripts"][name] = data
+        elif gtype in self.file_type:  # 未知类型
+            if gtype not in self.data_game.keys():
+                self.data_game[gtype] = {name: data}
             else:
-                self.data_games[gtype][name] = data
+                self.data_game[gtype][name] = data
         else:
-            self.data_games["unknown"][name] = data
+            self.data_game["unknown"][name] = data
         # print("加载.json文件：", os.path.basename(path))
         write_log("加载.json文件："+os.path.basename(path), self.ID)
 
@@ -127,6 +127,5 @@ class GGRLoader:
 if __name__ == '__main__':
     loader = GGRLoader()
     loader.init()
-    # print(loader.file_content_paths)
 
 

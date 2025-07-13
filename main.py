@@ -34,15 +34,8 @@ class Main:
         self.deal_tag_list = []  # 处理标签列表
         self.read_path = {}
         # 变量数据
-        self.ID = "Main"
-        # 资源数据
-        self.data_games = {
-            "images": {},
-            "sounds": {},
-            "sprites": {},
-            "scenes": {},
-            "scripts": {},
-        }
+        self.ID = "Main"  # 主程序ID
+        self.custom_data = {}  # 自定义数据
         self.init()
 
     def init(self):
@@ -95,7 +88,20 @@ class Main:
         """自定义精灵标签处理:
         此处为G_GRL添加自定义后，其会自行对目标数据进行处理"""
         self.G_GRL.file_type.extend(data)  # 扩展文件类型列表
+        self.custom_data["sprite"] = data  # 保存自定义数据
         write_log(self.G_GRL.file_type, self.ID)
+
+    def deal_tag__custom_scene_type(self, data):
+        """自定义场景标签处理"""
+        self.G_GRL.file_type.extend(data)  # 扩展文件类型列表
+        self.custom_data["scene"] = data  # 保存自定义数据
+        write_log(data, self.ID)
+
+    def deal_tag__custom_script_type(self, data):
+        """自定义脚本标签处理"""
+        self.G_GRL.file_type.extend(data)  # 扩展文件类型列表
+        self.custom_data["script"] = data  # 保存自定义数据
+        write_log(data, self.ID)
 
     def deal_tag__first_load(self, data):
         """处理首次启动标签"""
@@ -103,6 +109,22 @@ class Main:
         # print(data["scene"])
         for path in data["path"]:
             self.G_GRL.load_file(path)  # 加载资源文件
+
+    def call_G_GRL(self, name):
+        """调用G_GRL模块"""
+        return getattr(self.G_GRL, name)  # 调用G_GRL模块
+
+    def call_G_GRA(self, name):
+        """调用G_GRA模块"""
+        return getattr(self.G_GRA, name)  # 调用G_GRA模块
+
+    def call_G_GRR(self, name):
+        """调用G_GRR模块"""
+        return getattr(self.G_GRR, name)  # 调用G_GRR模块
+
+    def call_G_GRC(self, name):
+        """调用G_GRC模块"""
+        return getattr(self.G_GRC, name)  # 调用G_GRC模块
 
 
 if __name__ == '__main__':
