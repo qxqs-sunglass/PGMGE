@@ -126,6 +126,12 @@ class Main:
         """调用G_GRC模块"""
         return getattr(self.G_GRC, name)  # 调用G_GRC模块
 
+    def call_charge_scene(self, scene_name):
+        """调用场景切换"""
+        sprites_data = self.G_GRA.get_scene_data[scene_name]  # 切换场景
+        self.G_GRR.charge_scene(scene_name, sprites_data)  # 切换场景
+        self.G_GRC.charge_scene(scene_name, sprites_data)  # 切换场景
+
 
 if __name__ == '__main__':
     app = Main()

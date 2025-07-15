@@ -6,9 +6,14 @@ class GGRRender:
         """游戏渲染器"""
         self.master = master  # main.py的实例化对象
         self.ID = "G_GRRender"  # 渲染器ID
-        self.sprites_data = None  # 存放所有精灵的数据
+        self.sprites_data = None  # 存放当前场景所有精灵的数据
+        self.scene = None  # 当前场景
 
     def init(self):
+        pass
+
+    def init_scene(self):
+        """初始化游戏场景"""
         pass
 
     def update(self):
@@ -16,3 +21,8 @@ class GGRRender:
         pass
         """for sprite in self.sprites_data:
             sprite.draw()"""
+
+    def charge_scene(self, scene_name, scene_data):
+        """载入游戏场景"""
+        self.sprites_data = scene_data
+        self.scene = scene_name

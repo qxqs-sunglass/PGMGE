@@ -8,11 +8,11 @@ class GGRAllocator:
         self.master: main.Main = master  # main.py的实例化对象
         self.ID = "G_GRAllocator"  # 全局资源分配器ID
         self.data_game = {}  # 基础游戏数据素体
-        self.data_custom = {}  # 自定义游戏数据素体
         self.data_images = {}  # 图片数据
-        self.data_scenes = {}  # 场景数据
         self.data_sounds = {}  # 音效数据
         self.data_music = {}  # 音乐数据
+        self.data_scenes = {}  # 场景数据
+        self.data_scripts = {}  # 脚本数据
         self.data_map = {
             "images": self.data_images,
             "scenes": self.data_scenes,
@@ -31,8 +31,6 @@ class GGRAllocator:
         for key, value in self.data_game.items():
             if key in self.data_map:
                 self.data_map[key] = value  # 基础游戏数据素体赋值到对应数据字典
-            else:
-                self.data_custom[key] = value  # 自定义游戏数据素体赋值到自定义数据字典
         print(self.data_game)
         for k, v in self.master.custom_data.items():
             self.tag_map[k](v, in_type="list")  # 处理自定义标签
@@ -67,5 +65,9 @@ class GGRAllocator:
             pass
         elif in_type == "list":
             pass
+
+    def get_scene_data(self, name):
+        """获取场景数据"""
+        return self.data_scenes.get(name)
 
 
