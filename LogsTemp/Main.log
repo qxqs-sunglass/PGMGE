@@ -1,6 +1,8 @@
-common:	发现自定义标签：custom_sprite_type				0.390625
-common:	发现自定义标签：first_load				0.390625
-common:	['image', 'scene', 'script', 'actor', 'equipment', 'skill']				0.390625
+common:	发现自定义标签：custom_sprite_type				0.453125
+common:	发现自定义标签：custom_script_type				0.453125
+common:	发现自定义标签：first_load				0.453125
+common:	['image', 'scene', 'script', 'actor', 'equipment']				0.453125
+common:	['skill']				0.453125
 info:	
 -------------------------
-游戏初始化成功！				0.53125
+游戏初始化成功！				0.59375

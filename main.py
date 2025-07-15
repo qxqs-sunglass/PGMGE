@@ -29,13 +29,16 @@ class Main:
         self.HEIGHT = self.data.get("height", 600)  # 屏幕高度
         self.deal_tag_map = {
             "custom_sprite_type": self.deal_tag__custom_sprite_type,
+            "custom_scene_type": self.deal_tag__custom_scene_type,
+            "custom_script_type": self.deal_tag__custom_script_type,
             "first_load": self.deal_tag__first_load
         }  # 自定义标签处理映射
         self.deal_tag_list = []  # 处理标签列表
         self.read_path = {}
         # 变量数据
         self.ID = "Main"  # 主程序ID
-        self.custom_data = {}  # 自定义数据
+        self.scene_name = ""  # 当前场景名称
+        self.custom_data = {}  # 自定义标签字典:{'sprite':[],'scene':[],'script':[]}
         self.init()
 
     def init(self):
@@ -107,8 +110,17 @@ class Main:
         """处理首次启动标签"""
         # print(data["path"])
         # print(data["scene"])
-        for path in data["path"]:
+        for path in data.get("path", ["00001"]):
+            if path == "00001":
+                write_log("弱警告：无路径", self.ID, msg_type="warning")
+                break
             self.G_GRL.load_file(path)  # 加载资源文件
+        for scene in data.get("scene", ["00001"]):
+            if scene == "00001":
+                write_log("弱警告：无场景", self.ID, msg_type="warning")
+                break
+            self.G_GRA.load_scene(data.get("name", "00001"))  # 加载场景
+        self.call_charge_scene(data.get("name", "title"))  # 切换场景
 
     def call_G_GRL(self, name):
         """调用G_GRL模块"""
@@ -128,9 +140,9 @@ class Main:
 
     def call_charge_scene(self, scene_name):
         """调用场景切换"""
-        sprites_data = self.G_GRA.get_scene_data[scene_name]  # 切换场景
-        self.G_GRR.charge_scene(scene_name, sprites_data)  # 切换场景
-        self.G_GRC.charge_scene(scene_name, sprites_data)  # 切换场景
+        self.scene_name = scene_name  # 保存场景名称
+        self.G_GRR.charge_scene(scene_name)  # 切换场景
+        self.G_GRC.charge_scene(scene_name)  # 切换场景
 
 
 if __name__ == '__main__':
