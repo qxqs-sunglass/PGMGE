@@ -1,33 +1,33 @@
-common:	加载.json文件：start.json				0.453125
-common:	加载.json文件：start.json				0.453125
-common:	加载图片：希腊神殿.jpg				0.453125
-common:	加载图片：but1.png				0.46875
-common:	加载.json文件：王陵.json				0.46875
-common:	加载.json文件：苏晓.json				0.46875
-common:	加载.json文件：于人之法.json				0.46875
-common:	加载图片：actor.png				0.484375
-common:	加载图片：共.png				0.53125
-common:	加载图片：苏晓.png				0.578125
-common:	加载图片：error.png				0.59375
-common:	加载图片：user.png				0.59375
-common:	加载.json文件：title.json				0.59375
-common:	加载.json文件：王陵.json				0.59375
+common:	加载.json文件：start.json				0.40625
+common:	加载.json文件：start.json				0.40625
+common:	加载图片：希腊神殿.jpg				0.40625
+common:	加载图片：but1.png				0.421875
+common:	加载.json文件：王陵.json				0.421875
+common:	加载.json文件：苏晓.json				0.421875
+common:	加载.json文件：于人之法.json				0.421875
+common:	加载图片：actor.png				0.4375
+common:	加载图片：共.png				0.5
+common:	加载图片：苏晓.png				0.5625
+common:	加载图片：error.png				0.578125
+common:	加载图片：user.png				0.578125
+common:	加载.json文件：title.json				0.578125
+common:	加载.json文件：王陵.json				0.578125
 info:	
 -------------------------
-初始化成功！				0.59375
-common:	文件数量：14				0.59375
-common:	文件类型：6				0.59375
-common:	images: 7				0.59375
-common:	{'希腊神殿.jpg': <Surface(528x260x24 SW)>, 'but1.png': <Surface(1080x216x32 SW)>, 'actor.png': <Surface(500x700x32 SW)>, '共.png': <Surface(1080x1512x32 SW)>, '苏晓.png': <Surface(1080x1512x32 SW)>, 'error.png': <Surface(500x500x32 SW)>, 'user.png': <Surface(500x500x32 SW)>}				0.59375
-common:	scenes: 2				0.59375
-common:	{'start.json': {'name': 'start_scene', 'type': 'scene', 'sprites': {'but1': {'image': 'but1.png', 'x': 700, 'y': 400}, 'bg': {'image': '希腊神殿.jpg', 'x': 0, 'y': 0}}}, 'title.json': {'name': 'title', 'type': 'scene'}}				0.59375
-common:	scripts: 1				0.59375
-common:	{'start.json': {'name': 'start', 'type': 'script'}}				0.59375
-common:	unknown: 0				0.59375
-common:	{}				0.59375
-common:	actor: 2				0.59375
-common:	{'王陵.json': {'type': 'actor'}, '苏晓.json': {'type': 'actor'}}				0.59375
-common:	equipment: 1				0.59375
-common:	{'于人之法.json': {'type': 'equipment'}}				0.59375
-common:	skill: 1				0.59375
-common:	{'王陵.json': {'type': 'skill'}}				0.59375
+初始化成功！				0.578125
+common:	文件数量：14				0.578125
+common:	文件类型：6				0.578125
+common:	images: 7				0.578125
+common:	{'希腊神殿.jpg': <Surface(528x260x24 SW)>, 'but1.png': <Surface(1080x216x32 SW)>, 'actor.png': <Surface(500x700x32 SW)>, '共.png': <Surface(1080x1512x32 SW)>, '苏晓.png': <Surface(1080x1512x32 SW)>, 'error.png': <Surface(500x500x32 SW)>, 'user.png': <Surface(500x500x32 SW)>}				0.578125
+common:	scenes: 2				0.578125
+common:	{'start.json': {'name': 'start', 'type': 'scene', 'sprites': {'but1': {'image': 'but1.png', 'x': 700, 'y': 400}, 'bg': {'image': '希腊神殿.jpg', 'x': 0, 'y': 0}}}, 'title.json': {'name': 'title', 'type': 'scene'}}				0.578125
+common:	scripts: 1				0.578125
+common:	{'start.json': {'name': 'start', 'type': 'script'}}				0.578125
+common:	unknown: 0				0.578125
+common:	{}				0.578125
+common:	actor: 2				0.578125
+common:	{'王陵.json': {'type': 'actor'}, '苏晓.json': {'type': 'actor'}}				0.578125
+common:	equipment: 1				0.578125
+common:	{'于人之法.json': {'type': 'equipment'}}				0.578125
+common:	skill: 1				0.578125
+common:	{'王陵.json': {'type': 'skill'}}				0.578125

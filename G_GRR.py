@@ -23,6 +23,6 @@ class GGRRender:
             sprite.draw()"""
 
     def charge_scene(self, scene_name):
-        """载入游戏场景"""
-        self.sprites_data = self.master.call_G_GRA("data_scenes")[scene_name]
+        """更换游戏场景"""
+        self.sprites_data = self.master.call_G_GRA("data_scenes").get(scene_name, None)
         self.scene = scene_name

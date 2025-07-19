@@ -37,6 +37,7 @@ class Main:
         self.read_path = {}
         # 变量数据
         self.ID = "Main"  # 主程序ID
+        self.first_load = False  # 是否初始加载
         self.scene_name = ""  # 当前场景名称
         self.custom_data = {}  # 自定义标签字典:{'sprite':[],'scene':[],'script':[]}
         self.init()
@@ -108,8 +109,9 @@ class Main:
 
     def deal_tag__first_load(self, data):
         """处理首次启动标签"""
-        # print(data["path"])
-        # print(data["scene"])
+        print(data["path"])
+        print(data["scene"])
+        self.first_load = True  # 标记为初始加载
         for path in data.get("path", ["00001"]):
             if path == "00001":
                 write_log("弱警告：无路径", self.ID, msg_type="warning")

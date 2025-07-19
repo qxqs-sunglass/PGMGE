@@ -71,7 +71,7 @@ class GGRLoader:
         """深度优先遍历目录"""
         for file in os.listdir(path):  # 遍历目录
             file_path = os.path.join(path, file)  # 文件路径
-            if os.path.basename(file_path) == "__pycache__" or os.path.basename(file_path) == "config.json":  # 排除缓存文件
+            if os.path.basename(file_path) in ["__pycache__", "config.json"]:  # 排除缓存文件
                 continue
             if os.path.isdir(file_path):  # 目录
                 self.dfs_path(file_path)

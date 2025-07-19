@@ -25,5 +25,5 @@ class GGRControl:
     def charge_scene(self, scene_name):
         """载入场景"""
         self.scene_name = scene_name
-        self.script_data = self.master.call_G_GRA("data_scripts")[scene_name]
+        self.script_data = self.master.call_G_GRA("data_scripts").get(scene_name, None)
         write_log(f"载入场景{scene_name}", self.ID)
