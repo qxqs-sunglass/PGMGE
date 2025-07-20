@@ -13,8 +13,9 @@ class GGRControl:
     def init(self):
         pass
 
-    def init_game(self):
-        pass
+    def loading(self):
+        """游戏载入"""
+        self.master.call_G_GRA("data_scripts")
 
     def update(self):
         for event in pygame.event.get():

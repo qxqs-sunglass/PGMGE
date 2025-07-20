@@ -1,8 +1,7 @@
-
 import pygame
 
 
-class Sprite:
+class Actor:
     def __init__(self, image, pos=None, size=None,
                  image_type='img'):
         """标准的sprite类，游戏实例素体的基类。

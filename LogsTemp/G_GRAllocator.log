@@ -1,1 +1,4 @@
-warning:	警告：角色数据为空！				0.578125
+common:	获取数据<sprite: {'Actor': {<class 'resource.module.Actor.Actor'>, 'Actor'}, 'Equip': {'Equip', <class 'resource.module.Equip.Equip'>}}>				0.53125
+error:	角色王陵.json加载失败！'set' object is not callable				0.53125
+error:	角色苏晓.json加载失败！'set' object is not callable				0.53125
+error:	角色于人之法.json加载失败！'set' object is not callable				0.53125

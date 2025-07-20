@@ -36,6 +36,9 @@ class GGRLoader:
 
     def init(self):
         """初始化"""
+
+    def loading(self):
+        """加载资源"""
         self.dfs_path(self.file_path)
         write_log("\n-------------------------\n初始化成功！", self.ID, msg_type="info")
         write_log("文件数量："+str(len(self.file_content_paths)), self.ID)
@@ -84,6 +87,9 @@ class GGRLoader:
             file_type = self.judge_file_type(file_path)  # 判断文件类型
             if file_type in self.save_path_dict.keys():  # 类型存在于字典中
                 self.save_path_dict[file_type](file_path)  # 保存路径到字典
+            # ————————————————————
+            if self.master.first_load:
+                self.master.update()  # 更新主窗口
 
     def judge_file_type(self, file_path):
         """判断文件类型"""

@@ -5,6 +5,7 @@ from G_GRL import GGRLoader
 from G_GRA import GGRAllocator
 from G_GRR import GGRRender
 from G_GRC import GGRControl
+from importlib import import_module
 import pygame
 import json
 
@@ -39,7 +40,8 @@ class Main:
         self.ID = "Main"  # 主程序ID
         self.first_load = False  # 是否初始加载
         self.scene_name = ""  # 当前场景名称
-        self.custom_data = {}  # 自定义标签字典:{'sprite':[],'scene':[],'script':[]}
+        self.custom_data = {}
+        # 自定义标签字典:{'sprite':{"name": class, "name": class},'scene':{...},'script':{...}}
         self.init()
 
     def init(self):
@@ -47,6 +49,14 @@ class Main:
         init_log()   # 初始化日志模块
         self.init_game()  # 初始化游戏
         self.init_module()  # 初始化游戏模块
+        if self.first_load:
+            self.G_GRL.loading()  # 加载资源
+            self.G_GRA.loading()  # 初始化场景/角色资源
+            self.G_GRC.loading()  # 加载脚本
+            self.G_GRR.loading()  # 加载渲染器
+        else:
+            self.G_GRC.loading()  # 加载脚本
+            self.G_GRR.loading()  # 加载渲染器
         write_log("\n-------------------------\n游戏初始化成功！", self.ID, msg_type="info")
 
     def init_game(self):
@@ -73,10 +83,18 @@ class Main:
             self.clock.tick(self.fps)
             self.G_GRR.update()
             self.G_GRC.update()
-            pygame.display.flip()
+            pygame.display.flip()  # 刷新屏幕
+
+    def update(self):
+        """更新游戏"""
+        self.G_GRR.update()
+        self.G_GRC.update()
+        pygame.display.flip()  # 刷新屏幕
 
     def search_deal_tag(self):
-        """搜索并处理自定义标签"""
+        """搜索并处理自定义标签
+        注：deal_tag_list中存放自定义标签名称，deal_tag_map中存放对应的处理方法
+        通过映射表处理标签数据"""
         # 搜索自定义标签
         # print(self.data)
         for tag in __custom_tags__:
@@ -92,8 +110,22 @@ class Main:
         """自定义精灵标签处理:
         此处为G_GRL添加自定义后，其会自行对目标数据进行处理"""
         self.G_GRL.file_type.extend(data)  # 扩展文件类型列表
-        self.custom_data["sprite"] = data  # 保存自定义数据
-        write_log(self.G_GRL.file_type, self.ID)
+        self.custom_data["sprite"] = {}  # 保存自定义数据
+        for e in data:
+            module_path = f"resource.module.{e}"
+            data2 = {}
+            try:
+                temp = import_module(module_path)
+                data2[e] = {e, temp.__dict__[e]}  # 保存自定义数据
+                self.custom_data["sprite"].update(data2)  # 保存自定义数据
+                write_log(f"加载成功: <{e}: {data2[e]}>", self.ID)
+            except ModuleNotFoundError as err:
+                # 明确提示缺失的模块名
+                write_log(f"加载失败: {e} (原因: {err})", self.ID, "warning")
+            except KeyError as err:
+                # 明确提示缺失的类名
+                write_log(f"加载失败: {e} (原因: {err})", self.ID, "warning")
+        write_log(f"{self.custom_data['sprite']}", self.ID)
 
     def deal_tag__custom_scene_type(self, data):
         """自定义场景标签处理"""
@@ -126,18 +158,22 @@ class Main:
 
     def call_G_GRL(self, name):
         """调用G_GRL模块"""
+        write_log(f"调用G_GRL模块: {name}", "call_msg")
         return getattr(self.G_GRL, name)  # 调用G_GRL模块
 
     def call_G_GRA(self, name):
         """调用G_GRA模块"""
+        write_log(f"调用G_GRA模块: {name}", "call_msg")
         return getattr(self.G_GRA, name)  # 调用G_GRA模块
 
     def call_G_GRR(self, name):
         """调用G_GRR模块"""
+        write_log(f"调用G_GRR模块: {name}", "call_msg")
         return getattr(self.G_GRR, name)  # 调用G_GRR模块
 
     def call_G_GRC(self, name):
         """调用G_GRC模块"""
+        write_log(f"调用G_GRC模块: {name}", "call_msg")
         return getattr(self.G_GRC, name)  # 调用G_GRC模块
 
     def call_charge_scene(self, scene_name):
@@ -149,6 +185,6 @@ class Main:
 
 if __name__ == '__main__':
     app = Main()
-    app.run()
+    # app.run()
 
 

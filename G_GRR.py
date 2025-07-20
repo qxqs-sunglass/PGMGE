@@ -12,6 +12,10 @@ class GGRRender:
     def init(self):
         pass
 
+    def loading(self):
+        """游戏加载"""
+        pass
+
     def init_scene(self):
         """初始化游戏场景"""
         pass

@@ -10,7 +10,8 @@ __G_GR_ID__ = {
     "G_GRControl": "LogsTemp/G_GRControl.log",
     "G_GRRender": "LogsTemp/G_GRRender.log",
     "G_GRLoader": "LogsTemp/G_GRLoader.log",
-    "G_GRAllocator": "LogsTemp/G_GRAllocator.log"
+    "G_GRAllocator": "LogsTemp/G_GRAllocator.log",
+    "call_msg": "LogsTemp/call_msg.log",
 }  # 全局资源ID
 __msg_types__ = [
     "info",  # 信息
@@ -25,10 +26,10 @@ __msg_types__ = [
     "None"
 ]
 __custom_tags__ = [
-    "custom_sprite_type",  # 自定义精灵类型标签
+    "custom_sprite_type",  # 自定义精灵类型标签，注：需要在resource/module中创建相应的模块
     "custom_scene_type",  # 自定义场景类型标签
-    "custom_script_type",  # 自定义脚本类型标签
-    "first_load"  # 初始导入标签:用于打开加载界面时加载其余资源
+    "custom_script_type",  # 自定义脚本类型标签，注：需要在resource/module中创建相应的脚本模块
+    "first_load"  # 初始导入标签:一般用于打开加载界面
 ]  # 系统规范的自定义标签
 __warning_msg__ = [
     "00001"  # 警告信息

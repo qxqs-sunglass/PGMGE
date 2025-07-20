@@ -1,6 +1,5 @@
 from logs import write_log
 from config.BaseConfig import __warning_msg__
-from module.sprite import Sprite
 
 
 class GGRAllocator:
@@ -23,27 +22,38 @@ class GGRAllocator:
             "sounds": self.data_sounds,
             "music": self.data_music,
             "scripts": self.data_scripts,
-            "sprites": self.data_sprites
+            "sprites": self.data_sprites,
         }
         self.tag_map = [
-            self.init_sprite,
+            self.init_sprites,
             self.init_scene,
             self.init_script,
         ]
 
     def init(self):
         """初始化游戏全局资源分配器"""
+
+    def loading(self):
+        """加载游戏全局资源"""
         self.data_game = self.master.call_G_GRL('data_game')  # 获取基础游戏数据素体
         for tag in ["images", "sounds", "music", "scripts"]:
-            self.data_map[tag] = self.data_game.get(tag, {})  # 获取游戏素体数据
+            self.data_map[tag].update(self.data_game.get(tag, {}))  # 获取游戏素体数据
         for tag in self.tag_map:
             tag()  # 初始化角色->场景->脚本资源
 
-    def init_sprite(self):
+    def init_sprites(self):
         """初始化角色资源"""
         name = "sprite"
-        data: dict = self.data_game.get("sprites", {})  # 获取角色数据
-        # 角色数据格式：{"name": "data"}
+        custom_tags = self.master.custom_data.get(name, [])  # 获取自定义标签
+        write_log(f"获取数据<{name}: {custom_tags}>", self.ID)
+        data = {}
+        data2 = {}  # 自定义标签数据：映射表
+        for k, v in custom_tags.items():
+            # 注：tag = {"...", class}
+            data.update(self.data_game.get(k, {}))  # 合并角色数据
+            data2.update({k: v})
+        # 角色数据格式：data = {"name": data}
+        # print(data)
         if not data:  # 跳过空数据
             write_log("警告：角色数据为空！", self.ID, "warning")
             return
@@ -54,8 +64,17 @@ class GGRAllocator:
             if not v:  # 跳过空数据
                 write_log(f"警告：角色{k}数据为空！", self.ID, "warning")
                 continue
-            temp = Sprite(v.get("image"), v.get("pos"), v.get("size"))  # 创建角色对象
-            self.data_sprites[k] = temp  # 保存角色数据
+            # ————————————————————————————————————
+            try:
+                sp_type = v.get("type")  # 获取角色类型
+                temp = data2.get(sp_type)(v.get("image"), v.get("pos"), v.get("size"))  # 创建角色对象
+                self.data_sprites[name][k] = temp  # 保存角色数据
+                write_log(f"角色{k}加载成功！", self.ID)
+            except Exception as e:
+                write_log(f"角色{k}加载失败！{e}", self.ID, "error")
+            # ————END———
+            if self.master.first_load:
+                self.master.update()
 
     def init_scene(self):
         """初始化场景资源"""
