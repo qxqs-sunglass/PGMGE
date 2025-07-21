@@ -1,7 +1,6 @@
 """游戏引擎主程序"""
 from config.BaseConfig import __custom_tags__, __FPS__, __default_path__
 from logs import init_log, write_log
-from G_GRL import GGRLoader
 from G_GRA import GGRAllocator
 from G_GRR import GGRRender
 from G_GRC import GGRControl
@@ -13,7 +12,6 @@ import json
 class Main:
     def __init__(self):
         pygame.init()
-        self.G_GRL = GGRLoader(self)  # 加载游戏资源
         self.G_GRA = GGRAllocator(self)  # 合成、分配游戏场景
         self.G_GRR = GGRRender(self)  # 渲染游戏图像
         self.G_GRC = GGRControl(self)  # 处理游戏事件
@@ -49,14 +47,14 @@ class Main:
         init_log()   # 初始化日志模块
         self.init_game()  # 初始化游戏
         self.init_module()  # 初始化游戏模块
+        self.search_deal_tag()  # 搜索并处理自定义标签
         if self.first_load:
-            self.G_GRL.loading()  # 加载资源
             self.G_GRA.loading()  # 初始化场景/角色资源
-            self.G_GRC.loading()  # 加载脚本
             self.G_GRR.loading()  # 加载渲染器
+            self.G_GRC.loading()  # 加载脚本
         else:
-            self.G_GRC.loading()  # 加载脚本
             self.G_GRR.loading()  # 加载渲染器
+            self.G_GRC.loading()  # 加载脚本
         write_log("\n-------------------------\n游戏初始化成功！", self.ID, msg_type="info")
 
     def init_game(self):
@@ -67,12 +65,10 @@ class Main:
         pygame.display.set_caption(self.data.get("title", "游戏标题"))  # 设置窗口标题
         self.clock = pygame.time.Clock()  # 时钟
         self.fps = self.data.get("fps", __FPS__)  # 帧率
-        self.G_GRL.file_path = self.data.get("file_path", __default_path__)  # 资源文件路径
-        self.search_deal_tag()  # 搜索并处理自定义标签
+        self.G_GRA.file_path = self.data.get("file_path", __default_path__)  # 资源文件路径
 
     def init_module(self):
         """初始化游戏模块"""
-        self.G_GRL.init()
         self.G_GRA.init()
         # self.sprites_data
         self.G_GRC.init()
@@ -109,7 +105,7 @@ class Main:
     def deal_tag__custom_sprite_type(self, data):
         """自定义精灵标签处理:
         此处为G_GRL添加自定义后，其会自行对目标数据进行处理"""
-        self.G_GRL.file_type.extend(data)  # 扩展文件类型列表
+        self.G_GRA.file_type.extend(data)  # 扩展文件类型列表
         self.custom_data["sprite"] = {}  # 保存自定义数据
         for e in data:
             module_path = f"resource.module.{e}"
@@ -129,13 +125,13 @@ class Main:
 
     def deal_tag__custom_scene_type(self, data):
         """自定义场景标签处理"""
-        self.G_GRL.file_type.extend(data)  # 扩展文件类型列表
+        self.G_GRA.file_type.extend(data)  # 扩展文件类型列表
         self.custom_data["scene"] = data  # 保存自定义数据
         write_log(data, self.ID)
 
     def deal_tag__custom_script_type(self, data):
         """自定义脚本标签处理"""
-        self.G_GRL.file_type.extend(data)  # 扩展文件类型列表
+        self.G_GRA.file_type.extend(data)  # 扩展文件类型列表
         self.custom_data["script"] = data  # 保存自定义数据
         write_log(data, self.ID)
 
@@ -148,18 +144,8 @@ class Main:
             if path == "00001":
                 write_log("弱警告：无路径", self.ID, msg_type="warning")
                 break
-            self.G_GRL.load_file(path)  # 加载资源文件
-        for scene in data.get("scene", ["00001"]):
-            if scene == "00001":
-                write_log("弱警告：无场景", self.ID, msg_type="warning")
-                break
-            self.G_GRA.load_scene(data.get("name", "00001"))  # 加载场景
-        self.call_charge_scene(data.get("name", "title"))  # 切换场景
-
-    def call_G_GRL(self, name):
-        """调用G_GRL模块"""
-        write_log(f"调用G_GRL模块: {name}", "call_msg")
-        return getattr(self.G_GRL, name)  # 调用G_GRL模块
+            self.G_GRA.load_file(path)  # 加载资源文件
+        self.call_charge_scene(data.get("scene", "00001"))  # 加载场景
 
     def call_G_GRA(self, name):
         """调用G_GRA模块"""

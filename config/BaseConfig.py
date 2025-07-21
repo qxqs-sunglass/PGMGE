@@ -9,7 +9,6 @@ __G_GR_ID__ = {
     "Main": "LogsTemp/Main.log",
     "G_GRControl": "LogsTemp/G_GRControl.log",
     "G_GRRender": "LogsTemp/G_GRRender.log",
-    "G_GRLoader": "LogsTemp/G_GRLoader.log",
     "G_GRAllocator": "LogsTemp/G_GRAllocator.log",
     "call_msg": "LogsTemp/call_msg.log",
 }  # 全局资源ID
