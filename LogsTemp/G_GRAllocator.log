@@ -1,38 +1,52 @@
-common:	加载.json文件：start.json				0.40625
-common:	加载.json文件：start.json				0.40625
-common:	加载图片：希腊神殿.jpg				0.421875
-common:	加载图片：but1.png				0.421875
-info:	初始化游戏全局资源分配器				0.421875
-common:	加载.json文件：王陵.json				0.421875
-common:	加载.json文件：苏晓.json				0.421875
-common:	加载.json文件：于人之法.json				0.421875
-common:	加载图片：actor.png				0.4375
-common:	加载图片：共.png				0.484375
-common:	加载图片：苏晓.png				0.546875
-common:	加载图片：error.png				0.546875
-common:	加载图片：user.png				0.5625
-common:	加载.json文件：title.json				0.578125
-common:	加载.json文件：王陵.json				0.578125
+info:	初始化游戏全局资源分配器				0.484375
+common:	加载.json文件：start.json				0.5
+common:	加载.json文件：start.json				0.5
+common:	加载图片：希腊神殿.jpg				0.5
+common:	加载图片：but1.png				0.515625
+common:	加载.json文件：王陵.json				0.515625
+common:	加载.json文件：苏晓.json				0.515625
+common:	加载.json文件：于人之法.json				0.515625
+common:	加载图片：actor.png				0.53125
+common:	加载图片：共.png				0.59375
+common:	加载图片：苏晓.png				0.65625
+common:	加载图片：error.png				0.671875
+common:	加载图片：user.png				0.671875
+common:	加载.json文件：title.json				0.703125
+common:	加载.json文件：start.json				0.703125
+common:	加载.json文件：王陵.json				0.703125
 info:	
 -------------------------
-初始化成功！				0.578125
-common:	文件数量：19				0.578125
-common:	文件类型：6				0.578125
-common:	images: 7				0.578125
-common:	{'希腊神殿.jpg': <Surface(528x260x24 SW)>, 'but1.png': <Surface(1080x216x32 SW)>, 'actor.png': <Surface(500x700x32 SW)>, '共.png': <Surface(1080x1512x32 SW)>, '苏晓.png': <Surface(1080x1512x32 SW)>, 'error.png': <Surface(500x500x32 SW)>, 'user.png': <Surface(500x500x32 SW)>}				0.578125
-common:	scenes: 2				0.578125
-common:	{'start.json': {'name': 'start', 'type': 'scene', 'sprites': {'but1': {'image': 'but1.png', 'x': 700, 'y': 400}, 'bg': {'image': '希腊神殿.jpg', 'x': 0, 'y': 0}}}, 'title.json': {'name': 'title', 'type': 'scene'}}				0.578125
-common:	scripts: 1				0.578125
-common:	{'start.json': {'name': 'start', 'type': 'script'}}				0.578125
-common:	unknown: 0				0.578125
-common:	{}				0.578125
-common:	Actor: 2				0.578125
-common:	{'王陵.json': {'type': 'Actor'}, '苏晓.json': {'type': 'Actor'}}				0.578125
-common:	Equip: 1				0.578125
-common:	{'于人之法.json': {'type': 'Equip'}}				0.578125
-common:	Skill: 1				0.578125
-common:	{'王陵.json': {'type': 'Skill'}}				0.578125
-common:	获取数据<sprite: {'Actor': {<class 'resource.module.Actor.Actor'>, 'Actor'}, 'Equip': {<class 'resource.module.Equip.Equip'>, 'Equip'}}>				0.578125
-error:	角色王陵.json加载失败！'set' object is not callable				0.578125
-error:	角色苏晓.json加载失败！'set' object is not callable				0.578125
-error:	角色于人之法.json加载失败！'set' object is not callable				0.578125
+初始化成功！				0.703125
+common:	文件数量：21				0.703125
+common:	文件类型：7				0.703125
+common:	images: 7				0.703125
+common:	{'希腊神殿.jpg': <Surface(528x260x24 SW)>, 'but1.png': <Surface(1080x216x32 SW)>, 'actor.png': <Surface(500x700x32 SW)>, '共.png': <Surface(1080x1512x32 SW)>, '苏晓.png': <Surface(1080x1512x32 SW)>, 'error.png': <Surface(500x500x32 SW)>, 'user.png': <Surface(500x500x32 SW)>}				0.703125
+common:	scenes: 2				0.703125
+common:	{'start.json': {'name': 'start', 'type': 'scene', 'sprites': {'but1': {'image': 'but1.png', 'x': 700, 'y': 400}, 'bg': {'image': '希腊神殿.jpg', 'x': 0, 'y': 0}}}, 'title.json': {'name': 'title', 'type': 'scene'}}				0.703125
+common:	scripts: 1				0.703125
+common:	{'start.json': {'name': 'start', 'type': 'script'}}				0.703125
+common:	unknown: 0				0.703125
+common:	{}				0.703125
+common:	Actor: 2				0.703125
+common:	{'王陵.json': {'type': 'Actor', 'image': '王陵.png', 'pos': [0, 0]}, '苏晓.json': {'type': 'Actor'}}				0.703125
+common:	Equip: 1				0.703125
+common:	{'于人之法.json': {'type': 'Equip'}}				0.71875
+common:	SceneBg: 1				0.71875
+common:	{'start.json': {'type': 'SceneBg', 'image': '希腊神殿.jpg', 'pos': [0, 0]}}				0.71875
+common:	Skill: 1				0.71875
+common:	{'王陵.json': {'type': 'Skill'}}				0.71875
+common:	----------
+				0.71875
+common:	获取数据<sprite: {'Actor': <class 'resource.module.Actor.Actor'>, 'Equip': <class 'resource.module.Equip.Equip'>, 'SceneBg': <class 'resource.module.SceneBg.SceneBg'>}>				0.71875
+common:	开始加载角色王陵.json...				0.71875
+common:	图片：王陵.png	位置：[0, 0]	大小：(1, 1)	类型：Actor				0.71875
+common:	角色王陵.json加载成功！				0.71875
+common:	开始加载角色苏晓.json...				0.71875
+common:	图片：None	位置：(0, 0)	大小：(1, 1)	类型：Actor				0.71875
+common:	角色苏晓.json加载成功！				0.71875
+common:	开始加载角色于人之法.json...				0.71875
+common:	图片：None	位置：(0, 0)	大小：(1, 1)	类型：Equip				0.71875
+error:	角色于人之法.json加载失败！Equip.__init__() missing 1 required positional argument: 'weight'				0.71875
+common:	开始加载角色start.json...				0.71875
+common:	图片：希腊神殿.jpg	位置：[0, 0]	大小：(1, 1)	类型：SceneBg				0.71875
+common:	角色start.json加载成功！				0.71875

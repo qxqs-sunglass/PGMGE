@@ -16,10 +16,6 @@ class GGRRender:
         """游戏加载"""
         pass
 
-    def init_scene(self):
-        """初始化游戏场景"""
-        pass
-
     def update(self):
         """更新游戏渲染器"""
         pass

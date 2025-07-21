@@ -4,7 +4,7 @@
   "height": 800,
   "fps": 60,
   "read_path": "resource\\",
-  "custom_sprite_type": ["Actor", "Equip"],
+  "custom_sprite_type": ["Actor", "Equip", "SceneBg"],
   "custom_script_type": ["Skill"],
   "first_load": {
     "name": "start",

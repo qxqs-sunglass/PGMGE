@@ -1,3 +1,5 @@
 {
-  "type": "Actor"
+  "type": "Actor",
+  "image": "王陵.png",
+  "pos": [0, 0]
 }

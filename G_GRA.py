@@ -115,6 +115,7 @@ class GGRAllocator:
         for key, value in self.data_game.items():
             write_log(key+": "+str(len(value)), self.ID)
             write_log(str(value), self.ID)
+        write_log("----------\n", self.ID)
         # ——————————————————————————————————————————————————————————
         for tag in ["images", "sounds", "music", "scripts"]:
             self.data_map[tag].update(self.data_game.get(tag, {}))  # 获取游戏素体数据
@@ -145,9 +146,15 @@ class GGRAllocator:
                 continue
             # ————————————————————————————————————
             try:
+                image = v.get("image")  # 获取角色图片
+                pos = v.get("pos", (0, 0))  # 获取角色位置
+                size = v.get("size", (1, 1))  # 获取角色大小
                 sp_type = v.get("type")  # 获取角色类型
-                temp = data2.get(sp_type)(v.get("image"), v.get("pos"), v.get("size"))  # 创建角色对象
-                self.data_sprites[name][k] = temp  # 保存角色数据
+                # ————————————————————————————————————————————
+                write_log(f"开始加载角色{k}...", self.ID)
+                write_log(f"图片：{image}\t位置：{pos}\t大小：{size}\t类型：{sp_type}", self.ID)
+                temp = data2.get(sp_type)(image, pos, size)  # 创建角色对象
+                self.data_map["sprites"][k] = temp  # 保存角色数据
                 write_log(f"角色{k}加载成功！", self.ID)
             except Exception as e:
                 write_log(f"角色{k}加载失败！{e}", self.ID, "error")

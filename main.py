@@ -112,7 +112,7 @@ class Main:
             data2 = {}
             try:
                 temp = import_module(module_path)
-                data2[e] = {e, temp.__dict__[e]}  # 保存自定义数据
+                data2[e] = temp.__dict__[e]  # 保存自定义数据
                 self.custom_data["sprite"].update(data2)  # 保存自定义数据
                 write_log(f"加载成功: <{e}: {data2[e]}>", self.ID)
             except ModuleNotFoundError as err:
