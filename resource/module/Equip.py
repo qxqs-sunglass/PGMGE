@@ -1,6 +1,8 @@
-class Equip:
-    def __init__(self, name, description, value, weight):
-        self.name = name
-        self.description = description
-        self.value = value
-        self.weight = weight
+from . import sprite
+
+
+class Equip(sprite.Sprite):
+    def __init__(self, image, pos=(0, 0), size=(1, 1)):
+        """装备类"""
+        super().__init__(image, pos, size)
+        self.type = 'equip'

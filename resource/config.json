@@ -10,7 +10,8 @@
     "name": "start",
     "path": [
       "resource\\scenes\\start.json", "resource\\scripts\\start.json",
-      "resource\\images\\others\\希腊神殿.jpg", "resource\\images\\others\\but1.png"
+      "resource\\images\\others\\希腊神殿.jpg", "resource\\images\\others\\but1.png",
+      "resource\\scenes_bg\\start.json"
     ],
     "scene": "start",
     "script": "start"

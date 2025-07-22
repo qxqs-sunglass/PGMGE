@@ -11,11 +11,18 @@ class GGRControl:
         self.scene_name = ""  # 当前场景名称
 
     def init(self):
-        pass
+        """初始化"""
+        write_log("初始化G_GRC", self.ID)
 
-    def loading(self):
-        """游戏载入"""
-        self.master.call_G_GRA("data_scripts")
+    def loading(self, name="None"):
+        """游戏载入
+        :param name: 场景名称(选填)"""
+        if name == "None":
+            self.script_data = self.master.call_G_GRA("data_scripts", self.ID).get(self.scene_name, {})
+            write_log(f"载入{self.scene_name}场景数据", self.ID)
+            return
+        self.scene_name = name
+        self.script_data = self.master.call_G_GRA("data_scripts", self.ID).get(name, {})
 
     def update(self):
         for event in pygame.event.get():
@@ -25,6 +32,5 @@ class GGRControl:
 
     def charge_scene(self, scene_name):
         """载入场景"""
-        self.scene_name = scene_name
-        self.script_data = self.master.call_G_GRA("data_scripts").get(scene_name, None)
+        self.loading(scene_name)
         write_log(f"载入场景{scene_name}", self.ID)

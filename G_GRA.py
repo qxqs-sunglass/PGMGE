@@ -64,7 +64,12 @@ class GGRAllocator:
                 self.load(file)
         else:
             write_log("导入方式错误！", self.ID, msg_type="error")
-        print(self.file_content_paths)
+        # print(self.file_content_paths)
+        # ——————————————————————————————————————————————————————————
+        for tag in ["images", "sounds", "music", "scripts", "scenes"]:
+            self.data_map[tag].update(self.data_game.get(tag, {}))  # 获取游戏素体数据
+        print(1, self.data_game)
+        self.loading_sprites()  # 加载角色
 
     def load(self, file_path):
         if not os.path.exists(file_path):  # 文件不存在
@@ -84,6 +89,22 @@ class GGRAllocator:
         elif suffix == ".json":
             return "json"
 
+    def loading(self):
+        """加载游戏全局资源"""
+        # 加载游戏素体数据
+        self.dfs_path(self.file_path)
+        write_log("\n-------------------------\n初始化成功！", self.ID, msg_type="info")
+        write_log("文件数量："+str(len(self.file_content_paths)), self.ID)
+        write_log("文件类型："+str(len(self.file_type)), self.ID)
+        for key, value in self.data_game.items():
+            write_log(key+": "+str(len(value)), self.ID)
+            write_log(str(value), self.ID)
+        write_log("----------\n", self.ID)
+        # ——————————————————————————————————————————————————————————
+        for tag in ["images", "sounds", "music", "scripts", "scenes"]:
+            self.data_map[tag].update(self.data_game.get(tag, {}))  # 获取游戏素体数据
+        self.loading_sprites()  # 加载角色
+
     def dfs_path(self, path):
         """深度优先遍历目录"""
         for file in os.listdir(path):  # 遍历目录
@@ -97,7 +118,7 @@ class GGRAllocator:
                 continue
             self.file_content_paths.append(file_path)  # 添加文件路径到列表
             # 保存路径到字典
-            print(file_path)
+            # print(file_path)
             file_type = self.judge_file_type(file_path)  # 判断文件类型
             if file_type in self.save_path_dict.keys():  # 类型存在于字典中
                 self.save_path_dict[file_type](file_path)  # 保存路径到字典
@@ -105,62 +126,48 @@ class GGRAllocator:
             if self.master.first_load:
                 self.master.update()  # 更新主窗口
 
-    def loading(self):
-        """加载游戏全局资源"""
-        # 加载游戏素体数据
-        self.dfs_path(self.file_path)
-        write_log("\n-------------------------\n初始化成功！", self.ID, msg_type="info")
-        write_log("文件数量："+str(len(self.file_content_paths)), self.ID)
-        write_log("文件类型："+str(len(self.file_type)), self.ID)
-        for key, value in self.data_game.items():
-            write_log(key+": "+str(len(value)), self.ID)
-            write_log(str(value), self.ID)
-        write_log("----------\n", self.ID)
-        # ——————————————————————————————————————————————————————————
-        for tag in ["images", "sounds", "music", "scripts"]:
-            self.data_map[tag].update(self.data_game.get(tag, {}))  # 获取游戏素体数据
-        self.loading_sprites()  # 加载角色
-
     def loading_sprites(self):
         """构建角色"""
         name = "sprite"
         custom_tags = self.master.custom_data.get(name, [])  # 获取自定义标签
         write_log(f"获取数据<{name}: {custom_tags}>", self.ID)
         data = {}
-        data2 = {}  # 自定义标签数据：映射表
         for k, v in custom_tags.items():
             # 注：tag = {"...", class}
             data.update(self.data_game.get(k, {}))  # 合并角色数据
-            data2.update({k: v})
         # 角色数据格式：data = {"name": data}
         # print(data)
         if not data:  # 跳过空数据
             write_log("警告：角色数据为空！", self.ID, "warning")
             return
         for k, v in data.items():  # 遍历角色数据
-            if k in self.data_sprites:  # 跳过已存在的角色
-                write_log(f"角色{k}已存在！", self.ID)
-                continue
-            if not v:  # 跳过空数据
-                write_log(f"警告：角色{k}数据为空！", self.ID, "warning")
-                continue
-            # ————————————————————————————————————
-            try:
-                image = v.get("image")  # 获取角色图片
-                pos = v.get("pos", (0, 0))  # 获取角色位置
-                size = v.get("size", (1, 1))  # 获取角色大小
-                sp_type = v.get("type")  # 获取角色类型
-                # ————————————————————————————————————————————
-                write_log(f"开始加载角色{k}...", self.ID)
-                write_log(f"图片：{image}\t位置：{pos}\t大小：{size}\t类型：{sp_type}", self.ID)
-                temp = data2.get(sp_type)(image, pos, size)  # 创建角色对象
-                self.data_map["sprites"][k] = temp  # 保存角色数据
-                write_log(f"角色{k}加载成功！", self.ID)
-            except Exception as e:
-                write_log(f"角色{k}加载失败！{e}", self.ID, "error")
-            # ————END———
-            if self.master.first_load:
-                self.master.update()  # 更新主窗口
+            self.create_sprite(k, v, custom_tags)  # 创建角色
+
+    def create_sprite(self, name, data, custom_tags):
+        """创建角色"""
+        if name in self.data_sprites:  # 跳过已存在的角色
+            write_log(f"角色{name}已存在！", self.ID)
+            return
+        if not data:  # 跳过空数据
+            write_log(f"警告：角色{name}数据为空！", self.ID, "warning")
+            return
+        # ————————————————————————————————————
+        try:
+            image = data.get("image")  # 获取角色图片
+            pos = data.get("pos", (0, 0))  # 获取角色位置
+            size = data.get("size", (1, 1))  # 获取角色大小
+            sp_type = data.get("type")  # 获取角色类型
+            # ————————————————————————————————————————————
+            write_log(f"开始加载角色{name}...", self.ID)
+            write_log(f"图片：{image}\t位置：{pos}\t大小：{size}\t类型：{sp_type}", self.ID)
+            temp = custom_tags.get(sp_type)(image, pos, size)  # 创建角色对象
+            self.data_map["sprites"][name] = temp  # 保存角色数据
+            write_log(f"角色{name}加载成功！", self.ID)
+        except Exception as e:
+            write_log(f"角色{name}加载失败！{e}", self.ID, "error")
+        # ————END———
+        if self.master.first_load:
+            self.master.update()  # 更新主窗口
 
     def get_scene_data(self, name):
         """获取场景数据"""

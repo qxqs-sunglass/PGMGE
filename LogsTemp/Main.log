@@ -1,11 +1,11 @@
-common:	发现自定义标签：custom_sprite_type				0.484375
-common:	发现自定义标签：custom_script_type				0.484375
-common:	发现自定义标签：first_load				0.484375
-common:	加载成功: <Actor: <class 'resource.module.Actor.Actor'>>				0.484375
-common:	加载成功: <Equip: <class 'resource.module.Equip.Equip'>>				0.484375
-common:	加载成功: <SceneBg: <class 'resource.module.SceneBg.SceneBg'>>				0.5
-common:	{'Actor': <class 'resource.module.Actor.Actor'>, 'Equip': <class 'resource.module.Equip.Equip'>, 'SceneBg': <class 'resource.module.SceneBg.SceneBg'>}				0.5
-common:	['Skill']				0.5
+common:	发现自定义标签：custom_sprite_type				0.46875
+common:	发现自定义标签：custom_script_type				0.46875
+common:	发现自定义标签：first_load				0.46875
+common:	加载成功: <Actor: <class 'resource.module.Actor.Actor'>>				0.46875
+common:	加载成功: <Equip: <class 'resource.module.Equip.Equip'>>				0.46875
+common:	加载成功: <SceneBg: <class 'resource.module.SceneBg.SceneBg'>>				0.46875
+common:	{'Actor': <class 'resource.module.Actor.Actor'>, 'Equip': <class 'resource.module.Equip.Equip'>, 'SceneBg': <class 'resource.module.SceneBg.SceneBg'>}				0.46875
+common:	['Skill']				0.46875
 info:	
 -------------------------
-游戏初始化成功！				0.734375
+游戏初始化成功！				0.5

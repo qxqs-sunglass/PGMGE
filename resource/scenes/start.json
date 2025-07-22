@@ -1,16 +1,7 @@
 {
   "name": "start",
   "type": "scene",
-  "sprites": {
-    "but1": {
-      "image": "but1.png",
-      "x": 700,
-      "y": 400
-    },
-    "bg": {
-      "image": "希腊神殿.jpg",
-      "x": 0,
-      "y": 0
-    }
-  }
+  "sprites": [
+    "start"
+  ]
 }

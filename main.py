@@ -48,13 +48,8 @@ class Main:
         self.init_game()  # 初始化游戏
         self.init_module()  # 初始化游戏模块
         self.search_deal_tag()  # 搜索并处理自定义标签
-        if self.first_load:
-            self.G_GRA.loading()  # 初始化场景/角色资源
-            self.G_GRR.loading()  # 加载渲染器
-            self.G_GRC.loading()  # 加载脚本
-        else:
-            self.G_GRR.loading()  # 加载渲染器
-            self.G_GRC.loading()  # 加载脚本
+        if not self.first_load:
+            self.call_charge_scene(self.data.get("scene", "00001"))  # 加载场景
         write_log("\n-------------------------\n游戏初始化成功！", self.ID, msg_type="info")
 
     def init_game(self):
@@ -139,27 +134,25 @@ class Main:
         """处理首次启动标签"""
         print(data["path"])
         print(data["scene"])
-        self.first_load = True  # 标记为初始加载
-        for path in data.get("path", ["00001"]):
-            if path == "00001":
-                write_log("弱警告：无路径", self.ID, msg_type="warning")
-                break
-            self.G_GRA.load_file(path)  # 加载资源文件
+        if "path" in data:
+            path = data.get("path", "")
+            self.G_GRA.load_file(path, "list")  # 加载资源文件
         self.call_charge_scene(data.get("scene", "00001"))  # 加载场景
+        self.first_load = True  # 标记为初始加载
 
-    def call_G_GRA(self, name):
+    def call_G_GRA(self, name, G_ID):
         """调用G_GRA模块"""
-        write_log(f"调用G_GRA模块: {name}", "call_msg")
+        write_log(f"【{G_ID}】调用G_GRA模块: 【{name}】", "call_msg")
         return getattr(self.G_GRA, name)  # 调用G_GRA模块
 
-    def call_G_GRR(self, name):
+    def call_G_GRR(self, name, G_ID):
         """调用G_GRR模块"""
-        write_log(f"调用G_GRR模块: {name}", "call_msg")
+        write_log(f"【{G_ID}】调用G_GRR模块: 【{name}】", "call_msg")
         return getattr(self.G_GRR, name)  # 调用G_GRR模块
 
-    def call_G_GRC(self, name):
+    def call_G_GRC(self, name, G_ID):
         """调用G_GRC模块"""
-        write_log(f"调用G_GRC模块: {name}", "call_msg")
+        write_log(f"【{G_ID}】调用G_GRC模块: 【{name}】", "call_msg")
         return getattr(self.G_GRC, name)  # 调用G_GRC模块
 
     def call_charge_scene(self, scene_name):
@@ -171,6 +164,6 @@ class Main:
 
 if __name__ == '__main__':
     app = Main()
-    # app.run()
+    app.run()
 
 
