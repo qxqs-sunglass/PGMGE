@@ -22,7 +22,9 @@ class GGRControl:
             write_log(f"载入{self.scene_name}场景数据", self.ID)
             return
         self.scene_name = name
-        self.script_data = self.master.call_G_GRA("data_scripts", self.ID).get(name, {})
+        temp = self.master.call_G_GRA("data_scripts", self.ID)
+        print(temp)
+        self.script_data = temp.get(self.scene_name, {})
 
     def update(self):
         for event in pygame.event.get():

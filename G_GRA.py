@@ -46,7 +46,9 @@ class GGRAllocator:
             "images": {},
             "scenes": {},
             "scripts": {},
-            "unknown": {}
+            "unknown": {},
+            "sprites": {},
+            "sounds": {},
         }  # 游戏数据
 
     def init(self):
@@ -68,8 +70,10 @@ class GGRAllocator:
         # ——————————————————————————————————————————————————————————
         for tag in ["images", "sounds", "music", "scripts", "scenes"]:
             self.data_map[tag].update(self.data_game.get(tag, {}))  # 获取游戏素体数据
-        print(1, self.data_game)
+        # print(1, self.data_game)
         self.loading_sprites()  # 加载角色
+        # print(2, self.data_map)  # 打印角色数据
+        # print(3, self.data_sprites)
 
     def load(self, file_path):
         if not os.path.exists(file_path):  # 文件不存在
@@ -128,7 +132,7 @@ class GGRAllocator:
 
     def loading_sprites(self):
         """构建角色"""
-        name = "sprite"
+        name = "sprites"
         custom_tags = self.master.custom_data.get(name, [])  # 获取自定义标签
         write_log(f"获取数据<{name}: {custom_tags}>", self.ID)
         data = {}
@@ -153,15 +157,16 @@ class GGRAllocator:
             return
         # ————————————————————————————————————
         try:
-            image = data.get("image")  # 获取角色图片
+            image_name = data.get("image")  # 获取角色图片
+            image = self.data_images.get(image_name)  # 获取图片数据
             pos = data.get("pos", (0, 0))  # 获取角色位置
             size = data.get("size", (1, 1))  # 获取角色大小
             sp_type = data.get("type")  # 获取角色类型
             # ————————————————————————————————————————————
             write_log(f"开始加载角色{name}...", self.ID)
             write_log(f"图片：{image}\t位置：{pos}\t大小：{size}\t类型：{sp_type}", self.ID)
-            temp = custom_tags.get(sp_type)(image, pos, size)  # 创建角色对象
-            self.data_map["sprites"][name] = temp  # 保存角色数据
+            temp = custom_tags.get(sp_type)(name, image, pos, size)  # 创建角色对象
+            self.data_map["sprites"].update({name: temp})  # 保存角色数据
             write_log(f"角色{name}加载成功！", self.ID)
         except Exception as e:
             write_log(f"角色{name}加载失败！{e}", self.ID, "error")
@@ -188,7 +193,7 @@ class GGRAllocator:
             data = json.load(f)
             f.close()
         gtype = data.get("type")  # 获取类型
-        name = os.path.basename(path)  # 获取文件名
+        name = data.get("name", os.path.basename(path))  # 获取文件名
         if gtype == "scene":  # 场景
             self.data_game["scenes"][name] = data
         elif gtype == "script":  # 脚本

@@ -100,15 +100,16 @@ class Main:
     def deal_tag__custom_sprite_type(self, data):
         """自定义精灵标签处理:
         此处为G_GRL添加自定义后，其会自行对目标数据进行处理"""
+        name = "sprites"
         self.G_GRA.file_type.extend(data)  # 扩展文件类型列表
-        self.custom_data["sprite"] = {}  # 保存自定义数据
+        self.custom_data[name] = {}  # 保存自定义数据
         for e in data:
             module_path = f"resource.module.{e}"
             data2 = {}
             try:
                 temp = import_module(module_path)
                 data2[e] = temp.__dict__[e]  # 保存自定义数据
-                self.custom_data["sprite"].update(data2)  # 保存自定义数据
+                self.custom_data[name].update(data2)  # 保存自定义数据
                 write_log(f"加载成功: <{e}: {data2[e]}>", self.ID)
             except ModuleNotFoundError as err:
                 # 明确提示缺失的模块名
@@ -116,7 +117,7 @@ class Main:
             except KeyError as err:
                 # 明确提示缺失的类名
                 write_log(f"加载失败: {e} (原因: {err})", self.ID, "warning")
-        write_log(f"{self.custom_data['sprite']}", self.ID)
+        write_log(f"{self.custom_data[name]}", self.ID)
 
     def deal_tag__custom_scene_type(self, data):
         """自定义场景标签处理"""
