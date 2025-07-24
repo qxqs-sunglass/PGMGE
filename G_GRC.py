@@ -23,7 +23,7 @@ class GGRControl:
             return
         self.scene_name = name
         temp = self.master.call_G_GRA("data_scripts", self.ID)
-        print(temp)
+        # print(temp)
         self.script_data = temp.get(self.scene_name, {})
 
     def update(self):

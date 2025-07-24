@@ -133,8 +133,8 @@ class Main:
 
     def deal_tag__first_load(self, data):
         """处理首次启动标签"""
-        print(data["path"])
-        print(data["scene"])
+        # print(data["path"])
+        # print(data["scene"])
         if "path" in data:
             path = data.get("path", "")
             self.G_GRA.load_file(path, "list")  # 加载资源文件

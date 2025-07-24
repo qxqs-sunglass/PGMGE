@@ -1,5 +1,5 @@
 __author__ = '@bilibili__秋天会有下雪天'  # 作者
-__version__ = '0.0.1'  # 版本号
+__version__ = '0.1.1'  # 版本号
 __date__ = '2025-07-5'  # 创建日期
 __default_path__ = 'resource\\'  # 默认资源路径
 __default_scene__ = 'title'   # 默认场景名称

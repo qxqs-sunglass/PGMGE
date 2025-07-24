@@ -1,7 +1,7 @@
 {
   "title": "Test Game",
-  "width": 1400,
-  "height": 800,
+  "width": 1584,
+  "height": 780,
   "fps": 60,
   "read_path": "resource\\",
   "custom_sprite_type": ["Actor", "Equip", "SceneBg"],

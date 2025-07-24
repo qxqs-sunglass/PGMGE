@@ -26,14 +26,14 @@ class GGRRender:
             write_log("加载场景{}数据".format(name), self.ID)
         # ————————————————————————————————————————————————
         sprites_data = self.master.call_G_GRA("data_sprites", self.ID)
-        print(self.scene_data)
-        print(sprites_data)
+        # print(self.scene_data)
+        # print(sprites_data)
         if "sprites" in self.scene_data.keys():
             for n in self.scene_data["sprites"]:  # 遍历场景中所有精灵
                 if n not in sprites_data.keys():  # 若精灵数据不存在，则跳过
                     continue
                 self.sprites_data.append(sprites_data.get(n, None))
-        print(self.sprites_data)
+        # print(self.sprites_data)
 
     def update(self):
         """更新游戏渲染器"""
