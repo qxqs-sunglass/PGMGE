@@ -1,3 +1,6 @@
-common:	G_GRRender初始化				0.46875
-common:	加载场景start数据				0.515625
-common:	更换场景为start				0.515625
+common:	G_GRRender初始化				0.4375
+common:	加载场景start数据				0.484375
+common:	加载场景{'name': 'start', 'type': 'scene', 'sprites': ['start', 'but1']}精灵数据				0.484375
+common:	加载精灵start数据				0.484375
+common:	加载精灵but1数据				0.484375
+common:	更换场景为start				0.484375

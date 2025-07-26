@@ -73,7 +73,7 @@ class GGRAllocator:
         # print(1, self.data_game)
         self.loading_sprites()  # 加载角色
         # print(2, self.data_map)  # 打印角色数据
-        # print(3, self.data_sprites)
+        write_log(f"数据{self.data_sprites}", self.ID)
 
     def load(self, file_path):
         if not os.path.exists(file_path):  # 文件不存在

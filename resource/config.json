@@ -4,14 +4,14 @@
   "height": 780,
   "fps": 60,
   "read_path": "resource\\",
-  "custom_sprite_type": ["Actor", "Equip", "SceneBg"],
+  "custom_sprite_type": ["Actor", "Equip", "SceneBg", "But"],
   "custom_script_type": ["Skill"],
   "first_load": {
     "name": "start",
     "path": [
       "resource\\scenes\\start.json", "resource\\scripts\\start.json",
       "resource\\images\\others\\希腊神殿.jpg", "resource\\images\\others\\but1.png",
-      "resource\\scenes_bg\\start.json"
+      "resource\\other_sp\\start.json", "resource\\other_sp\\but1.json"
     ],
     "scene": "start",
     "script": "start"

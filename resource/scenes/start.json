@@ -2,6 +2,7 @@
   "name": "start",
   "type": "scene",
   "sprites": [
-    "start"
+    "start",
+    "but1"
   ]
 }

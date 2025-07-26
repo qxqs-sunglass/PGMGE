@@ -29,10 +29,13 @@ class GGRRender:
         # print(self.scene_data)
         # print(sprites_data)
         if "sprites" in self.scene_data.keys():
+            write_log("加载场景{}精灵数据".format(self.scene_data), self.ID)
             for n in self.scene_data["sprites"]:  # 遍历场景中所有精灵
                 if n not in sprites_data.keys():  # 若精灵数据不存在，则跳过
+                    write_log("精灵{}数据不存在".format(n), self.ID)
                     continue
                 self.sprites_data.append(sprites_data.get(n, None))
+                write_log("加载精灵{}数据".format(n), self.ID)
         # print(self.sprites_data)
 
     def update(self):

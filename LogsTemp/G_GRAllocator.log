@@ -1,10 +1,15 @@
-info:	初始化游戏全局资源分配器				0.46875
-common:	加载.json文件：start.json				0.484375
-common:	加载.json文件：start.json				0.484375
-common:	加载图片：希腊神殿.jpg				0.484375
-common:	加载图片：but1.png				0.5
-common:	加载.json文件：start.json				0.5
-common:	获取数据<sprites: {'Actor': <class 'resource.module.Actor.Actor'>, 'Equip': <class 'resource.module.Equip.Equip'>, 'SceneBg': <class 'resource.module.SceneBg.SceneBg'>}>				0.5
-common:	开始加载角色start...				0.5
-common:	图片：<Surface(528x260x24 SW)>	位置：[0, 0]	大小：[3, 3]	类型：SceneBg				0.5
-common:	角色start加载成功！				0.515625
+info:	初始化游戏全局资源分配器				0.4375
+common:	加载.json文件：start.json				0.453125
+common:	加载.json文件：start.json				0.453125
+common:	加载图片：希腊神殿.jpg				0.46875
+common:	加载图片：but1.png				0.46875
+common:	加载.json文件：start.json				0.46875
+common:	加载.json文件：but1.json				0.46875
+common:	获取数据<sprites: {'Actor': <class 'resource.module.Actor.Actor'>, 'Equip': <class 'resource.module.Equip.Equip'>, 'SceneBg': <class 'resource.module.SceneBg.SceneBg'>, 'But': <class 'resource.module.But.But'>}>				0.46875
+common:	开始加载角色start...				0.46875
+common:	图片：<Surface(528x260x24 SW)>	位置：[0, 0]	大小：[3, 3]	类型：SceneBg				0.46875
+common:	角色start加载成功！				0.484375
+common:	开始加载角色but1...				0.484375
+common:	图片：<Surface(1080x216x32 SW)>	位置：[200, 200]	大小：[0.5, 0.5]	类型：But				0.484375
+common:	角色but1加载成功！				0.484375
+common:	数据{'start': <SceneBg(<Surface(1584x780x24 SW)>, <rect(0, 0, 1584, 780)>)>, 'but1': <But(<Surface(540x108x32 SW)>, <rect(200, 200, 540, 108)>)>}				0.484375
