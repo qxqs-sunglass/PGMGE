@@ -1,4 +1,9 @@
 {
   "name": "start",
-  "type": "script"
+  "type": "script",
+  "check_mouse": {
+    "but1": [
+
+    ]
+  }
 }

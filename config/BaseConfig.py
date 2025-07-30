@@ -33,3 +33,11 @@ __custom_tags__ = [
 __warning_msg__ = [
     "00001"  # 警告信息
 ]
+collider_types = [
+    "check_mouse",  # 鼠标碰撞器
+    "check_keyboard",  # 键盘碰撞器
+]
+
+
+
+

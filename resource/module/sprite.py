@@ -45,6 +45,7 @@ class Sprite:
         self.rect = self.image.get_rect()
 
     def __repr__(self):
+        """返回Sprite对象的字符串表示形式。"""
         return f"<{self.__class__.__name__}({self.image!r}, {self.rect!r})>"
 
     @staticmethod
